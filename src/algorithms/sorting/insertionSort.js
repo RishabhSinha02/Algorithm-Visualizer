@@ -1,20 +1,19 @@
-export const getBubbleSortAnimations = (array) => {
+export const getInsertionSortAnimations = (array) => {
   const animations = [];
-  bubbleSort(array, animations);
+  insertionSort(array, animations);
   return animations;
 };
 
-const bubbleSort = (array, animations) => {
+const insertionSort = (array, animations) => {
   const n = array.length;
-  for (let i = 0; i < n; i++) {
-    for (let j = 1; j < n - i; j++) {
-      // Comparing
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = i + 1; j > 0; j--) {
       animations.push({
         type: "comparison",
         color: "indigo",
         data: [j, j - 1],
       });
-      // Comparing Finished
+
       animations.push({
         type: "comparison",
         color: "mediumpurple",
@@ -30,16 +29,20 @@ const bubbleSort = (array, animations) => {
           ],
         });
 
-        let temp = array[j];
+        const temp = array[j];
         array[j] = array[j - 1];
         array[j - 1] = temp;
+      } else {
+        break;
       }
     }
+  }
 
+  for (let i = array.length - 1; i > -1; i--) {
     animations.push({
       type: "done",
       color: "green",
-      data: [n - i - 1],
+      data: [i],
     });
   }
 };

@@ -1,7 +1,5 @@
 export const getMergeSortAnimations = (array) => {
   const animations = [];
-  if (array.length <= 1) return;
-
   mergeSort(array, 0, array.length - 1, animations);
   return animations;
 };
@@ -71,7 +69,7 @@ const mergeInPlace = (array, start, mid, end, animations) => {
 
   for (let l = 0; l < merged.length; l++) {
     array[start + l] = merged[l];
-    if (merged.length == array.length)
+    if (merged.length === array.length)
       animations.push({
         type: "done",
         color: "green",

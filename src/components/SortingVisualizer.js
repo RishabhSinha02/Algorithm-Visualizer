@@ -3,6 +3,7 @@ import classes from "./SortingVisualizer.module.css";
 
 import { getBubbleSortAnimations } from "../algorithms/sorting/bubbleSort";
 import { getMergeSortAnimations } from "../algorithms/sorting/mergeSort";
+import { getInsertionSortAnimations } from "../algorithms/sorting/insertionSort";
 import * as constants from "../helpers/constants";
 import ArrayBars from "./ArrayBars";
 
@@ -49,6 +50,7 @@ class SortingVisualizer extends Component {
           const {
             data: [barOneId, barTwoId],
           } = animation;
+
           const barOneStyle = arrayBars[barOneId].style;
           const barTwoStyle = arrayBars[barTwoId].style;
 
@@ -124,6 +126,55 @@ class SortingVisualizer extends Component {
     }
   }
 
+  insertionSortWrapper() {
+    const { array } = this.state;
+    const animations = getInsertionSortAnimations(array);
+    const arrayBars = document.getElementsByClassName("array-bar");
+
+    for (let i = 0; i < animations.length; i++) {
+      const animation = animations[i];
+      const { type } = animation;
+
+      if (type === "comparison") {
+        setTimeout(() => {
+          const {
+            data: [barOneId, barTwoId],
+          } = animation;
+
+          const barOneStyle = arrayBars[barOneId].style;
+          const barTwoStyle = arrayBars[barTwoId].style;
+
+          barOneStyle.backgroundColor = animation.color;
+          barTwoStyle.backgroundColor = animation.color;
+        }, i * constants.ANIMATION_SPEED);
+      } else if (type === "swap") {
+        setTimeout(() => {
+          const {
+            data: [barOneData, barTwoData],
+          } = animation;
+
+          const [barOneId, barOneNewHeight] = barOneData;
+          const [barTwoId, barTwoNewHeight] = barTwoData;
+
+          const barOneStyle = arrayBars[barOneId].style;
+          const barTwoStyle = arrayBars[barTwoId].style;
+
+          barOneStyle.height = `${barOneNewHeight}px`;
+          barTwoStyle.height = `${barTwoNewHeight}px`;
+        }, i * constants.ANIMATION_SPEED);
+      } else if (type === "done") {
+        setTimeout(() => {
+          const {
+            data: [barId],
+          } = animation;
+          const barStyle = arrayBars[barId].style;
+
+          barStyle.backgroundColor = animation.color;
+        }, i * constants.ANIMATION_SPEED);
+      }
+    }
+  }
+
   render() {
     const { array } = this.state;
     return (
@@ -149,6 +200,13 @@ class SortingVisualizer extends Component {
             onClick={this.mergeSortWrapper.bind(this)}
           >
             Merge Sort
+          </button>
+
+          <button
+            className={classes.button}
+            onClick={this.insertionSortWrapper.bind(this)}
+          >
+            Insertion Sort
           </button>
         </div>
       </div>
