@@ -5,7 +5,7 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html {
@@ -16,8 +16,7 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  font-family: Rubik, sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
 input,
@@ -25,7 +24,7 @@ button,
 select {
   border: none;
   outline: none;
-  font-family: Rubik, sans-serif;
+  font-family: poppins, sans-serif;
 }
 
 button {

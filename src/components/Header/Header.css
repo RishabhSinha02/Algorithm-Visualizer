@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  padding: 15px 50px;
+  align-items: center;
+}
+
+.header > * {
+  margin: 0 15px;
+}
+
+.header-logo {
+  font-weight: 900;
+  font-size: 36px;
+  text-transform: uppercase;
+  margin-right: auto;
+}
+
+select {
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+option {
+  padding: 10px 15px;
+}
+select option:hover {
+  background-color: var(--color-primary) !important;
+}
+.slider {
+  margin-left: 10px;
+}
+.slider-label {
+  font-size: 16px;
+  font-weight: 500;
+}

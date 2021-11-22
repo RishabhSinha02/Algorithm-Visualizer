@@ -1,0 +1,23 @@
+/* Links */
+a {
+  text-decoration: none;
+  font-family: Poppins;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+a:hover {
+  transform: scaleX(1.02);
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+/* Flex */
+.flex {
+  display: flex;
+  align-items: center;
+}
