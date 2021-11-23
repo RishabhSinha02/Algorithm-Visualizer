@@ -2,17 +2,19 @@
   display: flex;
   padding: 15px 50px;
   align-items: center;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header > * {
-  margin: 0 15px;
+  margin: 0 30px !important;
 }
 
 .header-logo {
   font-weight: 900;
   font-size: 36px;
   text-transform: uppercase;
-  margin-right: auto;
+  margin-right: auto !important;
 }
 
 select {
@@ -28,10 +30,11 @@ option {
 select option:hover {
   background-color: var(--color-primary) !important;
 }
-.slider {
-  margin-left: 10px;
-}
 .slider-label {
   font-size: 16px;
   font-weight: 500;
+  margin-right: 10px;
+}
+.slider-container {
+  width: 150px;
 }

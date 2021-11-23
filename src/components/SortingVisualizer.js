@@ -6,7 +6,15 @@ import { getMergeSortAnimations } from "../algorithms/sorting/mergeSort";
 import { getInsertionSortAnimations } from "../algorithms/sorting/insertionSort";
 import * as constants from "../helpers/constants";
 import ArrayBars from "./ArrayBars";
+import Header from "../components/Header/Header";
+import Sortheader from "../components/Header/SortHeader";
+import { Button } from "@mui/material";
+import { connect } from "react-redux";
+import buttonStyles from "./ButtonStyle";
 
+// const getSortMethod = () => {
+//   return useSelector((state) => state.sort.sortMethod);
+// };
 class SortingVisualizer extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +23,14 @@ class SortingVisualizer extends Component {
     };
   }
 
+  // sortMethod = useSelector((state) => state.sort.sortMethod);
+
   componentDidMount() {
     this.resetArray();
   }
 
   resetArray() {
+    console.log("clicked");
     const array = [];
     for (let i = 0; i < constants.ARRAY_MAX_LENGTH; i++) {
       array.push(
@@ -35,6 +46,25 @@ class SortingVisualizer extends Component {
 
   getRandomFromRange(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  onSortHandler() {
+    console.log(this.props);
+    switch (this.props.sortMethod) {
+      case "merge":
+        this.mergeSortWrapper(this);
+        break;
+      case "insertion":
+        this.insertionSortWrapper(this);
+        break;
+      case "bubble":
+        this.bubbleSortWrapper(this);
+        break;
+      case "quick":
+        break;
+      default:
+        break;
+    }
   }
 
   bubbleSortWrapper() {
@@ -176,42 +206,36 @@ class SortingVisualizer extends Component {
   }
 
   render() {
+    console.log(this.props.sortMethod);
+
     const { array } = this.state;
     return (
-      <div className={classes.sortingVisualizer}>
-        <ArrayBars data={array} />
-        <div className={classes.buttons}>
-          <button
-            className={classes.button}
-            onClick={this.resetArray.bind(this)}
+      <>
+        <Header>
+          <Sortheader generateArray={this.resetArray.bind(this)} />
+        </Header>
+        <div className={classes.sortingVisualizer}>
+          <Button
+            size="large"
+            style={buttonStyles}
+            className="float"
+            variant="contained"
+            color="secondary"
+            onClick={this.onSortHandler.bind(this)}
           >
-            Generate New Array
-          </button>
-
-          <button
-            className={classes.button}
-            onClick={this.bubbleSortWrapper.bind(this)}
-          >
-            Bubble Sort
-          </button>
-
-          <button
-            className={classes.button}
-            onClick={this.mergeSortWrapper.bind(this)}
-          >
-            Merge Sort
-          </button>
-
-          <button
-            className={classes.button}
-            onClick={this.insertionSortWrapper.bind(this)}
-          >
-            Insertion Sort
-          </button>
+            Sort
+          </Button>
+          <ArrayBars data={array} />
         </div>
-      </div>
+      </>
     );
   }
 }
 
-export default SortingVisualizer;
+const mapStateToProps = (state) => {
+  return {
+    sortMethod: state.sort.sortMethod,
+  };
+};
+
+export default connect(mapStateToProps)(SortingVisualizer);
