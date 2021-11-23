@@ -11,10 +11,8 @@ import Sortheader from "../components/Header/SortHeader";
 import { Button } from "@mui/material";
 import { connect } from "react-redux";
 import buttonStyles from "./ButtonStyle";
+import sortIcon from "../Assets/sort.svg";
 
-// const getSortMethod = () => {
-//   return useSelector((state) => state.sort.sortMethod);
-// };
 class SortingVisualizer extends Component {
   constructor(props) {
     super(props);
@@ -216,7 +214,6 @@ class SortingVisualizer extends Component {
         </Header>
         <div className={classes.sortingVisualizer}>
           <Button
-            size="large"
             style={buttonStyles}
             className="float"
             variant="contained"
@@ -224,6 +221,7 @@ class SortingVisualizer extends Component {
             onClick={this.onSortHandler.bind(this)}
           >
             Sort
+            <img style={{ marginLeft: 10 }} src={sortIcon} alt="sort-logo" />
           </Button>
           <ArrayBars data={array} />
         </div>

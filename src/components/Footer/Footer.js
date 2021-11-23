@@ -1,6 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
 import "./Footer.css";
+import toolIcon from "../../Assets/tool.svg";
+import userIcon from "../../Assets/user.svg";
 
 const Footer = () => {
   const technologiesUsed = {
@@ -37,13 +39,17 @@ const Footer = () => {
 
       <Box display="flex" alignItems="flex-start" gap={7}>
         <Box display="grid" gap={2}>
-          <p className="list-title">{technologiesUsed.title}</p>
+          <Box display="flex" gap={2} className="list-title">
+            {technologiesUsed.title} <img src={toolIcon} alt="tool-logo" />
+          </Box>
           {technologiesUsed.items.map((el) => (
             <p className="list-item">{el}</p>
           ))}
         </Box>
         <Box display="grid" gap={2}>
-          <p className="list-title">{contributors.title}</p>
+          <Box display="flex" gap={2} className="list-title">
+            {contributors.title} <img src={userIcon} alt="tool-logo" />
+          </Box>
           {contributors.items.map((el) => (
             <p className="list-item">{el}</p>
           ))}
