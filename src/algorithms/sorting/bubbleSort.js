@@ -1,3 +1,5 @@
+import { colorPrimary, colorSecondary } from "../../colors";
+
 export const getBubbleSortAnimations = (array) => {
   const animations = [];
   bubbleSort(array, animations);
@@ -17,7 +19,7 @@ const bubbleSort = (array, animations) => {
       // Comparing Finished
       animations.push({
         type: "comparison",
-        color: "mediumpurple",
+        color: colorPrimary,
         data: [j, j - 1],
       });
 
@@ -38,7 +40,7 @@ const bubbleSort = (array, animations) => {
 
     animations.push({
       type: "done",
-      color: "green",
+      color: colorSecondary,
       data: [n - i - 1],
     });
   }

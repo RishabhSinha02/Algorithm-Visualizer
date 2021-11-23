@@ -1,3 +1,5 @@
+import { colorPrimary, colorSecondary } from "../../colors";
+
 export const getMergeSortAnimations = (array) => {
   const animations = [];
   mergeSort(array, 0, array.length - 1, animations);
@@ -30,7 +32,7 @@ const mergeInPlace = (array, start, mid, end, animations) => {
 
     animations.push({
       type: "comparison",
-      color: "mediumpurple",
+      color: colorPrimary,
       data: [i, j],
     });
 
@@ -72,7 +74,7 @@ const mergeInPlace = (array, start, mid, end, animations) => {
     if (merged.length === array.length)
       animations.push({
         type: "done",
-        color: "green",
+        color: colorSecondary,
         data: [start + l],
       });
   }

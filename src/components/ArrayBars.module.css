@@ -1,3 +1,3 @@
 .arrayContainer {
-  transform: rotate(180deg) translateY(5px);
+  transform: rotateX(180deg) translateY(5px);
 }

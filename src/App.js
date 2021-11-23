@@ -4,6 +4,7 @@ import "./utils.css";
 import "./variables.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const theme = createTheme({
@@ -19,6 +20,7 @@ function App() {
         <div className={classes.app}>
           <SortingVisualizer />
         </div>
+        <Footer />
       </ThemeProvider>
     </Router>
   );
