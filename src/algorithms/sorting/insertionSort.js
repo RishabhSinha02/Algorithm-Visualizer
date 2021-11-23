@@ -1,3 +1,5 @@
+import { colorPrimary, colorSecondary } from "../../colors";
+
 export const getInsertionSortAnimations = (array) => {
   const animations = [];
   insertionSort(array, animations);
@@ -16,7 +18,7 @@ const insertionSort = (array, animations) => {
 
       animations.push({
         type: "comparison",
-        color: "mediumpurple",
+        color: colorPrimary,
         data: [j, j - 1],
       });
 
@@ -41,7 +43,7 @@ const insertionSort = (array, animations) => {
   for (let i = array.length - 1; i > -1; i--) {
     animations.push({
       type: "done",
-      color: "green",
+      color: colorSecondary,
       data: [i],
     });
   }

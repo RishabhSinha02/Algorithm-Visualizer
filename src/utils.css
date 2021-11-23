@@ -27,4 +27,5 @@ a:hover {
   position: absolute !important;
   right: 100px;
   bottom: 100px;
+  z-index: 1000;
 }
