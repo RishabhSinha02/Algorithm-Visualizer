@@ -21,3 +21,10 @@ a:hover {
   display: flex;
   align-items: center;
 }
+
+/*Float*/
+.float {
+  position: absolute !important;
+  right: 100px;
+  bottom: 100px;
+}

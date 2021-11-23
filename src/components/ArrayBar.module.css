@@ -2,7 +2,6 @@
   width: 10px;
   display: inline-block;
   margin-inline: 0.1em;
-  background-color: mediumpurple;
-
+  background-color: var(--color-secondary);
   transition: height 0.25s ease-in-out;
 }

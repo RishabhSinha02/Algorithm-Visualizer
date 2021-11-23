@@ -1,8 +1,18 @@
 import React from "react";
-import Button from "../Button/Button";
+import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { sortActions } from "../../Store/Slices/sortSlice";
+import { Slider } from "@mui/material";
+import ButtonStyles from "../ButtonStyle";
 
-const Sortheader = () => {
+const Sortheader = (props) => {
+  const dispatch = useDispatch();
+
+  const onSortChangeHandler = (e) => {
+    dispatch(sortActions.setSortMethod(e.target.value));
+  };
+
   const arrowForward = (
     <svg
       width="16"
@@ -17,19 +27,40 @@ const Sortheader = () => {
       />
     </svg>
   );
+
   return (
     <>
-      <div className="flex">
+      <div className="flex slider-container">
         <p className="slider-label">Speed</p>
-        <input type="range" className="slider" max="100" />
+        <Slider
+          aria-label="Temperature"
+          defaultValue={50}
+          max={100}
+          color="secondary"
+        />
       </div>
-      <div className="flex">
+      <div className="flex slider-container">
         <p className="slider-label">Size</p>
-        <input type="range" className="slider" max="100" />
+        <Slider
+          aria-label="Temperature"
+          defaultValue={50}
+          max={100}
+          color="secondary"
+        />
       </div>
-      <Button>Generate new Array</Button>
-      <select id="select-sorting-method">
-        <option value="merge">Merge Sort</option>
+      <Button
+        variant="contained"
+        size="large"
+        color="secondary"
+        style={ButtonStyles}
+        onClick={props.generateArray}
+      >
+        Generate new Array
+      </Button>
+      <select id="select-sorting-method" onChange={onSortChangeHandler}>
+        <option value="merge" selected>
+          Merge Sort
+        </option>
         <option value="bubble">Bubble Sort</option>
         <option value="insertion">Insertion Sort</option>
         <option value="quick">Quick Sort</option>
