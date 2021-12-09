@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import classes from "./ArrayBars.module.css";
-
 import ArrayBar from "./ArrayBar";
+
+import "./ArrayBars.css";
 
 class ArrayBars extends Component {
   render() {
     return (
-      <div className={classes.arrayContainer}>
+      <div className="array-container">
         {this.props.data.map((value, id) => {
           return <ArrayBar key={id} value={value} />;
         })}

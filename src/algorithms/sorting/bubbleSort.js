@@ -13,7 +13,7 @@ const bubbleSort = (array, animations) => {
       // Comparing
       animations.push({
         type: "comparison",
-        color: "indigo",
+        color: colorSecondary,
         data: [j, j - 1],
       });
       // Comparing Finished
@@ -37,11 +37,5 @@ const bubbleSort = (array, animations) => {
         array[j - 1] = temp;
       }
     }
-
-    animations.push({
-      type: "done",
-      color: colorSecondary,
-      data: [n - i - 1],
-    });
   }
 };

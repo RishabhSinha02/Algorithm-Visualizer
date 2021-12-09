@@ -1,10 +1,11 @@
 import SortingVisualizer from "./components/SortingVisualizer";
-import classes from "./App.module.css";
-import "./utils.css";
-import "./variables.css";
+import Footer from "./components/Footer/Footer";
+
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Footer from "./components/Footer/Footer";
+
+import "./variables.css";
+import "./utils.css";
 
 function App() {
   const theme = createTheme({
@@ -17,7 +18,7 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <div className={classes.app}>
+        <div className="App">
           <SortingVisualizer />
         </div>
         <Footer />

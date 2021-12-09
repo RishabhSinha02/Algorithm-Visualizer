@@ -26,7 +26,7 @@ const mergeInPlace = (array, start, mid, end, animations) => {
   while (i <= mid && j <= end) {
     animations.push({
       type: "comparison",
-      color: "indigo",
+      color: colorSecondary,
       data: [i, j],
     });
 
@@ -71,11 +71,5 @@ const mergeInPlace = (array, start, mid, end, animations) => {
 
   for (let l = 0; l < merged.length; l++) {
     array[start + l] = merged[l];
-    if (merged.length === array.length)
-      animations.push({
-        type: "done",
-        color: colorSecondary,
-        data: [start + l],
-      });
   }
 };
