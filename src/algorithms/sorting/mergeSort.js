@@ -26,7 +26,7 @@ const mergeInPlace = (array, start, mid, end, animations) => {
   while (i <= mid && j <= end) {
     animations.push({
       type: "comparison",
-      color: "indigo",
+      color: colorSecondary,
       data: [i, j],
     });
 

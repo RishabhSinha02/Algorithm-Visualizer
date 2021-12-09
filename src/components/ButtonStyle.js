@@ -1,5 +1,5 @@
 const buttonStyles = {
-  fontSize: 14,
+  fontSize: "inherit",
   fontFamily: "Poppins",
   textTransform: "capitalize",
   borderRadius: 12,

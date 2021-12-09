@@ -13,6 +13,11 @@ const Sortheader = (props) => {
     dispatch(sortActions.setSortMethod(e.target.value));
   };
 
+  const onSizeChangeHandler = (e) => {
+    dispatch(sortActions.setSize(e.target.value));
+    props.generateArray();
+  };
+
   const arrowForward = (
     <svg
       width="16"
@@ -43,9 +48,11 @@ const Sortheader = (props) => {
         <p className="slider-label">Size</p>
         <Slider
           aria-label="Temperature"
-          defaultValue={50}
+          defaultValue={100}
+          min={10}
           max={100}
           color="secondary"
+          onChange={onSizeChangeHandler}
         />
       </div>
       <Button
@@ -65,7 +72,7 @@ const Sortheader = (props) => {
         <option value="insertion">Insertion Sort</option>
         <option value="quick">Quick Sort</option>
       </select>
-      <Link className="flex" to="/path-finder">
+      <Link className="flex" to="/path-finding-algos">
         <p style={{ marginRight: 15 }}>Path Finding Algos</p> {arrowForward}
       </Link>
     </>

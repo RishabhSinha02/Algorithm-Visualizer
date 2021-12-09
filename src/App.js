@@ -2,9 +2,11 @@ import SortingVisualizer from "./components/SortingVisualizer";
 import classes from "./App.module.css";
 import "./utils.css";
 import "./variables.css";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Footer from "./components/Footer/Footer";
+import Pathheader from "./components/Header/PathHeader";
+import Header from "./components/Header/Header";
 
 function App() {
   const theme = createTheme({
@@ -15,14 +17,28 @@ function App() {
     },
   });
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <div className={classes.app}>
-          <SortingVisualizer />
-        </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Route path="/" exact>
+          <div className={classes.app}>
+            <SortingVisualizer />
+          </div>
+          {/* <Redirect to="/sorting-algos" />
+          <Route path="/sorting-algos" exact>
+            <div className={classes.app}>
+              <SortingVisualizer />
+            </div>
+          </Route> */}
+        </Route>
+        <Route path="/path-finding-algos">
+          <Header>
+            <Pathheader />
+          </Header>
+          <h1 className="header-logo">Yet to be designed</h1>
+        </Route>
         <Footer />
-      </ThemeProvider>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   sortMethod: "merge",
+  size: 100,
 };
 
 const sortSlice = createSlice({
@@ -10,6 +11,9 @@ const sortSlice = createSlice({
   reducers: {
     setSortMethod(state, action) {
       state.sortMethod = action.payload;
+    },
+    setSize(state, action) {
+      state.size = action.payload;
     },
   },
 });

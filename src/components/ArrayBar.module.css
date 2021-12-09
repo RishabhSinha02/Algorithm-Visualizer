@@ -1,7 +1,6 @@
 .arrayBar {
-  width: 10px;
+  width: 100%;
   display: inline-block;
-  margin-inline: 2px;
   background-color: var(--color-secondary);
   transition: height 0.25s ease-in-out;
 }

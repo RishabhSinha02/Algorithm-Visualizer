@@ -12,7 +12,7 @@ const insertionSort = (array, animations) => {
     for (let j = i + 1; j > 0; j--) {
       animations.push({
         type: "comparison",
-        color: "indigo",
+        color: colorSecondary,
         data: [j, j - 1],
       });
 

@@ -13,7 +13,7 @@ const bubbleSort = (array, animations) => {
       // Comparing
       animations.push({
         type: "comparison",
-        color: "indigo",
+        color: colorSecondary,
         data: [j, j - 1],
       });
       // Comparing Finished
