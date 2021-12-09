@@ -1,12 +1,14 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Select, MenuItem } from "@mui/material";
 import buttonStyles from "../ButtonStyle";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { pathActions } from "../../Store/Slices/pathSlice";
 
 const Pathheader = (props) => {
   const dispatch = useDispatch();
+  const sortMethod = useSelector((s) => s.path.method);
 
   const arrowForward = (
     <svg
@@ -38,12 +40,16 @@ const Pathheader = (props) => {
       >
         Find Shortest Path
       </Button>
-      <select onChange={onVisualizeChange}>
-        <option value="djiktra">Djiktra</option>
-        <option value="a*">A*</option>
-      </select>
+      <Select
+        value={sortMethod}
+        className="selector"
+        onChange={onVisualizeChange}
+      >
+        <MenuItem value="djiktra">Djiktra</MenuItem>
+        <MenuItem value="a*">A*</MenuItem>
+      </Select>
       <Link className="flex" to="/">
-        <p style={{ marginRight: 15 }}>Sorting Algos</p> {arrowForward}
+        <p style={{ marginRight: 10 }}>Sorting Algos</p> {arrowForward}
       </Link>
     </>
   );

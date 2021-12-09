@@ -1,13 +1,14 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sortActions } from "../../Store/Slices/sortSlice";
 import { Slider, Select, MenuItem } from "@mui/material";
 import ButtonStyles from "../ButtonStyle";
 
 const Sortheader = (props) => {
   const dispatch = useDispatch();
+  const sortMethod = useSelector((s) => s.sort.sortMethod);
 
   const onSortChangeHandler = (e) => {
     dispatch(sortActions.setSortMethod(e.target.value));
@@ -72,7 +73,12 @@ const Sortheader = (props) => {
         <option value="insertion">Insertion Sort</option>
         <option value="quick">Quick Sort</option>
       </select> */}
-      <Select id="select-sorting-method" onChange={onSortChangeHandler}>
+      <Select
+        className="selector"
+        id="select-sorting-method"
+        value={sortMethod}
+        onChange={onSortChangeHandler}
+      >
         <MenuItem value="merge" selected>
           Merge Sort
         </MenuItem>
@@ -81,7 +87,7 @@ const Sortheader = (props) => {
         <MenuItem value="quick">Quick Sort</MenuItem>
       </Select>
       <Link className="flex" to="/path-finding-algos">
-        <p style={{ marginRight: 15 }}>Path Finding Algos</p> {arrowForward}
+        <p style={{ marginRight: 10 }}>Path Finding Algos</p> {arrowForward}
       </Link>
     </>
   );

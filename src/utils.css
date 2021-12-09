@@ -8,8 +8,15 @@ a {
   transition: all 0.2s;
 }
 
-a:hover {
-  transform: scaleX(1.02);
+a svg, a p {
+  transition: all .2s;
+}
+
+a:hover p {
+  transform: translateX(-2px);
+}
+a:hover svg {
+  transform: translateX(2px);
 }
 
 .color-primary {

@@ -20,19 +20,19 @@
   text-transform: uppercase;
 }
 
-select {
-  background-color: transparent;
-  font-size: inherit;
-  font-weight: 500;
-  cursor: pointer;
+.selector > * {
+  color: #000 !important;
+  font-family: "Poppins" !important;
+  font-weight: 500 !important;
+  font-size: inherit !important;
 }
 
-option {
-  padding: 10px 15px;
+.selector fieldset {
+  border: none !important;
+  color: #000;
+  font-family: "Poppins";
 }
-select option:hover {
-  background-color: var(--color-primary) !important;
-}
+
 .slider-label {
   font-size: inherit;
   font-weight: 500;
@@ -44,7 +44,7 @@ select option:hover {
 
 @media (max-width: 1500px) {
   .header {
-    font-size: 12px;
+    font-size: 14px;
     padding: 7px 30px;
   }
 
@@ -53,5 +53,9 @@ select option:hover {
   }
   .slider-container {
     width: 120px;
+  }
+
+  .selector > * {
+    font-size: 14px !important;
   }
 }

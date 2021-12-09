@@ -6,11 +6,20 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Footer from "./components/Footer/Footer";
 import Pathheader from "./components/Header/PathHeader";
 import Header from "./components/Header/Header";
+import Logo from "./Assets/test.png";
+import { useState, useEffect } from "react";
 
 import "./variables.css";
 import "./utils.css";
+import Model from "./components/Model/Model";
 
 function App() {
+  const [showModel, setShowModel] = useState(false);
+
+  useEffect(() => {
+    setShowModel(true);
+  }, []);
+
   const theme = createTheme({
     palette: {
       secondary: {
@@ -18,25 +27,29 @@ function App() {
       },
     },
   });
+
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <Route path="/" exact>
           <div className={"App"}>
+            <Model show={showModel} showModel={(boolean) => setShowModel(boolean)} />
             <SortingVisualizer />
           </div>
-          {/* <Redirect to="/sorting-algos" />
-          <Route path="/sorting-algos" exact>
-            <div className={classes.app}>
-              <SortingVisualizer />
-            </div>
-          </Route> */}
         </Route>
         <Route path="/path-finding-algos">
           <Header>
             <Pathheader />
           </Header>
-          <h1 className="header-logo">Yet to be designed</h1>
+          <div style={{ textAlign: "center" }}>
+            <img
+              style={{ width: "90%", margin: "50px auto" }}
+              src={Logo}
+              alt="placeholder"
+            />
+          </div>
+          {/* <h1 className="header-logo">Yet to be designed</h1> */}
         </Route>
         <Footer />
       </Router>
