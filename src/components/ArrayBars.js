@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./ArrayBars.module.css";
+import "./ArrayBars.css";
 import { useSelector } from "react-redux";
 
 import ArrayBar from "./ArrayBar";
@@ -13,7 +13,7 @@ const ArrayBars = (props) => {
   };
 
   return (
-    <div className={classes.arrayContainer} style={styles}>
+    <div className={"array-container"} style={styles}>
       {props.data.map((value, id) => {
         return <ArrayBar key={id} value={value} />;
       })}

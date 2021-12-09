@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { sortActions } from "../../Store/Slices/sortSlice";
-import { Slider } from "@mui/material";
+import { Slider, Select, MenuItem } from "@mui/material";
 import ButtonStyles from "../ButtonStyle";
 
 const Sortheader = (props) => {
@@ -49,7 +49,7 @@ const Sortheader = (props) => {
         <Slider
           aria-label="Temperature"
           defaultValue={100}
-          min={10}
+          min={30}
           max={100}
           color="secondary"
           onChange={onSizeChangeHandler}
@@ -64,14 +64,22 @@ const Sortheader = (props) => {
       >
         Generate new Array
       </Button>
-      <select id="select-sorting-method" onChange={onSortChangeHandler}>
+      {/* <select id="select-sorting-method" onChange={onSortChangeHandler}>
         <option value="merge" selected>
           Merge Sort
         </option>
         <option value="bubble">Bubble Sort</option>
         <option value="insertion">Insertion Sort</option>
         <option value="quick">Quick Sort</option>
-      </select>
+      </select> */}
+      <Select id="select-sorting-method" onChange={onSortChangeHandler}>
+        <MenuItem value="merge" selected>
+          Merge Sort
+        </MenuItem>
+        <MenuItem value="bubble">Bubble Sort</MenuItem>
+        <MenuItem value="insertion">Insertion Sort</MenuItem>
+        <MenuItem value="quick">Quick Sort</MenuItem>
+      </Select>
       <Link className="flex" to="/path-finding-algos">
         <p style={{ marginRight: 15 }}>Path Finding Algos</p> {arrowForward}
       </Link>

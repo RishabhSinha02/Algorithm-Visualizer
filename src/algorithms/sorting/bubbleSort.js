@@ -37,11 +37,5 @@ const bubbleSort = (array, animations) => {
         array[j - 1] = temp;
       }
     }
-
-    animations.push({
-      type: "done",
-      color: colorSecondary,
-      data: [n - i - 1],
-    });
   }
 };

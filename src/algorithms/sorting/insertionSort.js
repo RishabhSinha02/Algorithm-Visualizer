@@ -39,12 +39,4 @@ const insertionSort = (array, animations) => {
       }
     }
   }
-
-  for (let i = array.length - 1; i > -1; i--) {
-    animations.push({
-      type: "done",
-      color: colorSecondary,
-      data: [i],
-    });
-  }
 };
