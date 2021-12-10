@@ -1,0 +1,10 @@
+.grid-row {
+  height: 25px;
+}
+
+.PathfindingVisualizer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

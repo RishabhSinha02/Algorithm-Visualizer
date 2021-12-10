@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import "./variables.css";
 import "./utils.css";
 import Model from "./components/Model/Model";
+import PathfindingVisualizer from "./components/PathfindingVisualizer";
 
 function App() {
   const [showModel, setShowModel] = useState(false);
@@ -28,13 +29,15 @@ function App() {
     },
   });
 
-
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <Route path="/" exact>
           <div className={"App"}>
-            <Model show={showModel} showModel={(boolean) => setShowModel(boolean)} />
+            <Model
+              show={showModel}
+              showModel={(boolean) => setShowModel(boolean)}
+            />
             <SortingVisualizer />
           </div>
         </Route>
@@ -42,13 +45,14 @@ function App() {
           <Header>
             <Pathheader />
           </Header>
-          <div style={{ textAlign: "center" }}>
-            <img
+          <PathfindingVisualizer />
+          {/* <div style={{ textAlign: "center" }}> */}
+          {/* <img
               style={{ width: "90%", margin: "50px auto" }}
               src={Logo}
               alt="placeholder"
             />
-          </div>
+          </div> */}
           {/* <h1 className="header-logo">Yet to be designed</h1> */}
         </Route>
         <Footer />
