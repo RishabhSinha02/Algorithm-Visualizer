@@ -1,18 +1,24 @@
 import React, { Component } from "react";
+import "./ArrayBars.css";
+import { useSelector } from "react-redux";
+
 import ArrayBar from "./ArrayBar";
 
-import "./ArrayBars.css";
+const ArrayBars = (props) => {
+  const sizeOfArray = useSelector((s) => s.sort.size);
+  const styles = {
+    display: "grid",
+    gridTemplateColumns: `repeat(${sizeOfArray}, 1fr)`,
+    gridGap: 3,
+  };
 
-class ArrayBars extends Component {
-  render() {
-    return (
-      <div className="array-container">
-        {this.props.data.map((value, id) => {
-          return <ArrayBar key={id} value={value} />;
-        })}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={"array-container"} style={styles}>
+      {props.data.map((value, id) => {
+        return <ArrayBar key={id} value={value} />;
+      })}
+    </div>
+  );
+};
 
 export default ArrayBars;

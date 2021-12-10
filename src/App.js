@@ -1,13 +1,25 @@
 import SortingVisualizer from "./components/SortingVisualizer";
-import Footer from "./components/Footer/Footer";
-
-import { BrowserRouter as Router } from "react-router-dom";
+import "./utils.css";
+import "./variables.css";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Footer from "./components/Footer/Footer";
+import Pathheader from "./components/Header/PathHeader";
+import Header from "./components/Header/Header";
+import Logo from "./Assets/test.png";
+import { useState, useEffect } from "react";
 
 import "./variables.css";
 import "./utils.css";
+import Model from "./components/Model/Model";
 
 function App() {
+  const [showModel, setShowModel] = useState(false);
+
+  useEffect(() => {
+    setShowModel(true);
+  }, []);
+
   const theme = createTheme({
     palette: {
       secondary: {
@@ -15,15 +27,33 @@ function App() {
       },
     },
   });
+
+
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          <SortingVisualizer />
-        </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Route path="/" exact>
+          <div className={"App"}>
+            <Model show={showModel} showModel={(boolean) => setShowModel(boolean)} />
+            <SortingVisualizer />
+          </div>
+        </Route>
+        <Route path="/path-finding-algos">
+          <Header>
+            <Pathheader />
+          </Header>
+          <div style={{ textAlign: "center" }}>
+            <img
+              style={{ width: "90%", margin: "50px auto" }}
+              src={Logo}
+              alt="placeholder"
+            />
+          </div>
+          {/* <h1 className="header-logo">Yet to be designed</h1> */}
+        </Route>
         <Footer />
-      </ThemeProvider>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 

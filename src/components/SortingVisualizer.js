@@ -25,16 +25,13 @@ class SortingVisualizer extends Component {
     };
   }
 
-  // sortMethod = useSelector((state) => state.sort.sortMethod);
-
   componentDidMount() {
     this.resetArray();
   }
 
   resetArray() {
-    console.log("clicked");
     const array = [];
-    for (let i = 0; i < constants.ARRAY_MAX_LENGTH; i++) {
+    for (let i = 0; i < this.props.size; i++) {
       array.push(
         this.getRandomFromRange(
           constants.ARRAY_MIN_VALUE,
@@ -66,6 +63,8 @@ class SortingVisualizer extends Component {
         break;
       case "quick":
         animations = getQuickSortAnimations(array);
+        break;
+      default:
         break;
     }
 
@@ -148,7 +147,7 @@ class SortingVisualizer extends Component {
 const mapStateToProps = (state) => {
   return {
     sortMethod: state.sort.sortMethod,
+    size: state.sort.size,
   };
 };
-
 export default connect(mapStateToProps)(SortingVisualizer);

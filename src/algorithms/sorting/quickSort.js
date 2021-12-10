@@ -20,13 +20,13 @@ const quickSort = (array, low, high, animations) => {
     while (array[s] < pivot) {
       animations.push({
         type: "comparison",
-        color: colorSecondary,
+        color: colorPrimary,
         data: [s, m],
       });
 
       animations.push({
         type: "comparison",
-        color: colorPrimary,
+        color: colorSecondary,
         data: [s, m],
       });
       s++;
@@ -35,13 +35,13 @@ const quickSort = (array, low, high, animations) => {
     while (array[e] > pivot) {
       animations.push({
         type: "comparison",
-        color: colorSecondary,
+        color: colorPrimary,
         data: [e, m],
       });
 
       animations.push({
         type: "comparison",
-        color: colorPrimary,
+        color: colorSecondary,
         data: [e, m],
       });
 

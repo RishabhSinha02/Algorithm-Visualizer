@@ -1,16 +1,22 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { sortActions } from "../../Store/Slices/sortSlice";
-import { Slider } from "@mui/material";
+import { Slider, Select, MenuItem } from "@mui/material";
 import ButtonStyles from "../ButtonStyle";
 
 const Sortheader = (props) => {
   const dispatch = useDispatch();
+  const sortMethod = useSelector((s) => s.sort.sortMethod);
 
   const onSortChangeHandler = (e) => {
     dispatch(sortActions.setSortMethod(e.target.value));
+  };
+
+  const onSizeChangeHandler = (e) => {
+    dispatch(sortActions.setSize(e.target.value));
+    props.generateArray();
   };
 
   const arrowForward = (
@@ -43,9 +49,11 @@ const Sortheader = (props) => {
         <p className="slider-label">Size</p>
         <Slider
           aria-label="Temperature"
-          defaultValue={50}
+          defaultValue={100}
+          min={30}
           max={100}
           color="secondary"
+          onChange={onSizeChangeHandler}
         />
       </div>
       <Button
@@ -57,16 +65,29 @@ const Sortheader = (props) => {
       >
         Generate new Array
       </Button>
-      <select id="select-sorting-method" onChange={onSortChangeHandler}>
+      {/* <select id="select-sorting-method" onChange={onSortChangeHandler}>
         <option value="merge" selected>
           Merge Sort
         </option>
         <option value="bubble">Bubble Sort</option>
         <option value="insertion">Insertion Sort</option>
         <option value="quick">Quick Sort</option>
-      </select>
-      <Link className="flex" to="/path-finder">
-        <p style={{ marginRight: 15 }}>Path Finding Algos</p> {arrowForward}
+      </select> */}
+      <Select
+        className="selector"
+        id="select-sorting-method"
+        value={sortMethod}
+        onChange={onSortChangeHandler}
+      >
+        <MenuItem value="merge" selected>
+          Merge Sort
+        </MenuItem>
+        <MenuItem value="bubble">Bubble Sort</MenuItem>
+        <MenuItem value="insertion">Insertion Sort</MenuItem>
+        <MenuItem value="quick">Quick Sort</MenuItem>
+      </Select>
+      <Link className="flex" to="/path-finding-algos">
+        <p style={{ marginRight: 10 }}>Path Finding Algos</p> {arrowForward}
       </Link>
     </>
   );
