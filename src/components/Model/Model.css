@@ -45,3 +45,16 @@
 .hide {
   display: none;
 }
+
+.cancel-logo {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.cancel-logo:hover {
+  transform: scale(1.05);
+}

@@ -16,6 +16,7 @@ import buttonStyles from "./ButtonStyle";
 import sortIcon from "../Assets/sort.svg";
 
 import "./SortingVisualizer.css";
+import Info from "../info";
 
 class SortingVisualizer extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class SortingVisualizer extends Component {
 
   componentDidMount() {
     this.resetArray();
+    this.props.showModel(true);
   }
 
   resetArray() {
@@ -45,6 +47,15 @@ class SortingVisualizer extends Component {
 
   getRandomFromRange(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  // Use this function for stop button
+  stopSorting() {
+    const id = setTimeout(() => {
+      for (let i = id; i >= 0; i--) {
+        clearTimeout(id);
+      }
+    }, 0);
   }
 
   onSortHandler() {
@@ -123,10 +134,12 @@ class SortingVisualizer extends Component {
     const { array } = this.state;
     return (
       <>
+        {this.props.children}
         <Header>
           <Sortheader generateArray={this.resetArray.bind(this)} />
         </Header>
         <div className="sorting-visualizer">
+          <Info onClick={() => this.props.showModel(true)} />
           <Button
             style={buttonStyles}
             className="float"

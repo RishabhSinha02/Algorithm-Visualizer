@@ -1,5 +1,6 @@
 import { colorPrimary, colorSecondary } from "../../colors";
 
+// animations
 const getQuickSortAnimations = (array) => {
   const animations = [];
   quickSort(array, 0, array.length - 1, animations);
