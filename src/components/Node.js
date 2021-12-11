@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import "./Node.css";
+import startIcon from "../Assets/start.svg";
+import finishIcon from "../Assets/end.svg";
 
 export default class Node extends Component {
   render() {
@@ -14,13 +16,7 @@ export default class Node extends Component {
       onMouseUp,
       row,
     } = this.props;
-    const extraClassName = isFinish
-      ? "node-finish"
-      : isStart
-      ? "node-start"
-      : isWall
-      ? "node-wall"
-      : "";
+    const extraClassName = isWall ? "node-wall" : "";
 
     return (
       <div
@@ -29,7 +25,15 @@ export default class Node extends Component {
         onMouseDown={() => onMouseDown(row, col)}
         onMouseEnter={() => onMouseEnter(row, col)}
         onMouseUp={() => onMouseUp()}
-      ></div>
+      >
+        {isStart ? (
+          <img src={startIcon} />
+        ) : isFinish ? (
+          <img src={finishIcon} />
+        ) : (
+          ""
+        )}
+      </div>
     );
   }
 }

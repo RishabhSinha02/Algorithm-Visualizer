@@ -47,6 +47,15 @@ class SortingVisualizer extends Component {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
+  // Use this function for stop button
+  stopSorting() {
+    const id = setTimeout(() => {
+      for (let i = id; i >= 0; i--) {
+        clearTimeout(id);
+      }
+    }, 0);
+  }
+
   onSortHandler() {
     const { array } = this.state;
     let animations = [];

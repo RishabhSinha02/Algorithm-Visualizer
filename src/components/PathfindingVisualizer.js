@@ -99,6 +99,8 @@ export default class PathfindingVisualizer extends Component {
     return (
       <div className="PathfindingVisualizer">
         <div className="grid">
+          <button onClick={this.visualizeDijkstra.bind(this)}>Dijkstra</button>
+          <button onClick={this.visualizeAstar.bind(this)}>A Star</button>
           {grid.map((row, rowIdx) => {
             return (
               <div key={rowIdx} className="grid-row">
