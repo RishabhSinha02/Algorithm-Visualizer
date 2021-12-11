@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import Node from "./Node";
-import {
-  dijkstra,
-  getNodesInShortestPathOrder,
-} from "../algorithms/pathfinding/dijkstra";
 import { Button } from "@mui/material";
 import buttonStyles from "./ButtonStyle";
 import { connect } from "react-redux";
+import * as dijkstra from "../algorithms/pathfinding/dijkstra";
+import * as astar from "../algorithms/pathfinding/astar";
 
 import "./PathfindingVisualizer.css";
+import Info from "../info";
 
 const START_NODE_ROW = 10;
 const START_NODE_COL = 15;
@@ -27,6 +26,7 @@ class PathfindingVisualizer extends Component {
   componentDidMount() {
     const grid = getInitialGrid();
     this.setState({ grid });
+    this.props.showModel(true);
   }
 
   handleMouseDown(row, col) {
@@ -44,7 +44,7 @@ class PathfindingVisualizer extends Component {
     this.setState({ mouseIsPressed: false });
   }
 
-  animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
+  animatePathfindingAlgorithm(visitedNodesInOrder, nodesInShortestPathOrder) {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
@@ -75,9 +75,27 @@ class PathfindingVisualizer extends Component {
     const { grid } = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
-    this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+    const visitedNodesInOrder = dijkstra.dijkstra(grid, startNode, finishNode);
+    const nodesInShortestPathOrder =
+      dijkstra.getNodesInShortestPathOrder(finishNode);
+    this.animatePathfindingAlgorithm(
+      visitedNodesInOrder,
+      nodesInShortestPathOrder
+    );
+  }
+
+  // Call this function on button click
+  visualizeAstar() {
+    const { grid } = this.state;
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const visitedNodesInOrder = astar.astar(grid, startNode, finishNode);
+    const nodesInShortestPathOrder =
+      astar.getNodesInShortestPathOrder(finishNode);
+    this.animatePathfindingAlgorithm(
+      visitedNodesInOrder,
+      nodesInShortestPathOrder
+    );
   }
 
   onVisualiseHandler = () => {
@@ -97,6 +115,7 @@ class PathfindingVisualizer extends Component {
 
     return (
       <div className="PathfindingVisualizer">
+        {this.props.children}
         <Button
           style={buttonStyles}
           className="float"
@@ -107,6 +126,7 @@ class PathfindingVisualizer extends Component {
           Visualise
         </Button>
         <div className="grid-wrapper">
+          <Info onClick={() => this.props.showModel(true)} />
           <div className="grid">
             {grid.map((row, rowIdx) => {
               return (
@@ -155,7 +175,7 @@ const getInitialGrid = () => {
 };
 
 const createNode = (col, row) => {
-  return {
+  const node = {
     col,
     row,
     isStart: row === START_NODE_ROW && col === START_NODE_COL,
@@ -164,7 +184,17 @@ const createNode = (col, row) => {
     isVisited: false,
     isWall: false,
     previousNode: null,
+    cost: calculateCost(row, col),
   };
+
+  return node;
+};
+
+const calculateCost = (nodeRow, nodeCol) => {
+  const rowCost = Math.abs(nodeRow - FINISH_NODE_ROW);
+  const colCost = Math.abs(nodeCol - FINISH_NODE_COL);
+
+  return rowCost + colCost;
 };
 
 const getNewGridWithWallToggled = (grid, row, col) => {

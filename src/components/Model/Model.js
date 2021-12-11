@@ -1,30 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Model.css";
 import { Button } from "@mui/material";
+import cancelIcon from "../../Assets/cancel.svg";
 
 const Model = (props) => {
-  const modelData = [
-    {
-      title: "Lorem Ipsum dolar sit",
-      list: [
-        "loream ipsum sit dolar fit never mind lorem ipsum sit got this for keep mine",
-        "loream ipsum sit mind lorem ipsum sit got this for keep mine",
-        "loream ipsum sit dolar fit neverm sit got this for keep mine",
-        "loream ipsum sit dolar fit never mind lorem ipsum sit  for keep mine",
-      ],
-    },
-    {
-      title: "Title dolar sit",
-      list: [
-        "loream ipsum sit dolar fit never mind lorem ipsum sit got this for keep mine",
-        "loream ipsum sit mind lorem ipsum sit got this for keep mine",
-        "loream ipsum sit dolar fit neverm sit got this for keep mine",
-        "loream ipsum sit dolar fit never mind lorem ipsum sit got this for keep mine",
-        "loream ipsum sit dolar fit never mind lorem ipsum sit  for keep mine",
-      ],
-    },
-  ];
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    setIndex(0);
+  }, [props.show]);
 
   let backdropClass = ["backdrop"];
   let modelClass = ["model"];
@@ -35,7 +19,7 @@ const Model = (props) => {
   }
 
   const next = () => {
-    if (index < modelData.length - 1) {
+    if (index < props.modelData.length - 1) {
       setIndex(index + 1);
     } else {
       props.showModel(false);
@@ -49,9 +33,15 @@ const Model = (props) => {
         onClick={() => props.showModel(false)}
       />
       <div className={modelClass.join(" ")}>
-        <p className="model-title">{modelData[index].title}</p>
+        <img
+          className="cancel-logo"
+          src={cancelIcon}
+          alt="cancel-icon"
+          onClick={() => props.showModel(false)}
+        />
+        <p className="model-title">{props.modelData[index].title}</p>
         <ul>
-          {modelData[index].list.map((el) => (
+          {props.modelData[index].list.map((el) => (
             <li>{el}</li>
           ))}
         </ul>

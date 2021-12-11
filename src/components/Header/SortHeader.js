@@ -37,15 +37,6 @@ const Sortheader = (props) => {
   return (
     <>
       <div className="flex slider-container">
-        <p className="slider-label">Speed</p>
-        <Slider
-          aria-label="Temperature"
-          defaultValue={50}
-          max={100}
-          color="secondary"
-        />
-      </div>
-      <div className="flex slider-container">
         <p className="slider-label">Size</p>
         <Slider
           aria-label="Temperature"

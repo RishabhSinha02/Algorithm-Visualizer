@@ -1,8 +1,6 @@
 import React from "react";
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Select, MenuItem } from "@mui/material";
-import buttonStyles from "../ButtonStyle";
 import { useSelector, useDispatch } from "react-redux";
 import { pathActions } from "../../Store/Slices/pathSlice";
 
@@ -31,15 +29,6 @@ const Pathheader = (props) => {
 
   return (
     <>
-      {/* <Button
-        variant="contained"
-        size="large"
-        color="secondary"
-        style={buttonStyles}
-        onClick={props.generateArray}
-      >
-        Find Shortest Path
-      </Button> */}
       <Select
         value={sortMethod}
         className="selector"
