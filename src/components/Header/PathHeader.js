@@ -31,7 +31,7 @@ const Pathheader = (props) => {
 
   return (
     <>
-      <Button
+      {/* <Button
         variant="contained"
         size="large"
         color="secondary"
@@ -39,7 +39,7 @@ const Pathheader = (props) => {
         onClick={props.generateArray}
       >
         Find Shortest Path
-      </Button>
+      </Button> */}
       <Select
         value={sortMethod}
         className="selector"

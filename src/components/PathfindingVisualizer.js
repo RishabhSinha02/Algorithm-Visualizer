@@ -4,6 +4,9 @@ import {
   dijkstra,
   getNodesInShortestPathOrder,
 } from "../algorithms/pathfinding/dijkstra";
+import { Button } from "@mui/material";
+import buttonStyles from "./ButtonStyle";
+import { connect } from "react-redux";
 
 import "./PathfindingVisualizer.css";
 
@@ -12,7 +15,7 @@ const START_NODE_COL = 15;
 const FINISH_NODE_ROW = 10;
 const FINISH_NODE_COL = 35;
 
-export default class PathfindingVisualizer extends Component {
+class PathfindingVisualizer extends Component {
   constructor() {
     super();
     this.state = {
@@ -77,37 +80,62 @@ export default class PathfindingVisualizer extends Component {
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
+  onVisualiseHandler = () => {
+    switch (this.props.method) {
+      case "djiktra":
+        this.visualizeDijkstra(this);
+        break;
+      case "a*":
+        break;
+      default:
+        break;
+    }
+  }
+
   render() {
     const { grid, mouseIsPressed } = this.state;
 
     return (
       <div className="PathfindingVisualizer">
-        <div className="grid">
-          {grid.map((row, rowIdx) => {
-            return (
-              <div key={rowIdx} className="grid-row">
-                {row.map((node, nodeIdx) => {
-                  const { row, col, isFinish, isStart, isWall } = node;
-                  return (
-                    <Node
-                      key={nodeIdx}
-                      col={col}
-                      isFinish={isFinish}
-                      isStart={isStart}
-                      isWall={isWall}
-                      mouseIsPressed={mouseIsPressed}
-                      onMouseDown={(row, col) => this.handleMouseDown(row, col)}
-                      onMouseEnter={(row, col) =>
-                        this.handleMouseEnter(row, col)
-                      }
-                      onMouseUp={() => this.handleMouseUp()}
-                      row={row}
-                    ></Node>
-                  );
-                })}
-              </div>
-            );
-          })}
+        <Button
+          style={buttonStyles}
+          className="float"
+          variant="contained"
+          color="secondary"
+          onClick={this.onVisualiseHandler}
+        >
+          Visualise
+        </Button>
+        <div className="grid-wrapper">
+          <div className="grid">
+            {grid.map((row, rowIdx) => {
+              return (
+                <div key={rowIdx} className="grid-row">
+                  {row.map((node, nodeIdx) => {
+                    const { row, col, isFinish, isStart, isWall } = node;
+                    return (
+                      <Node
+                        key={nodeIdx}
+                        col={col}
+                        isFinish={isFinish}
+                        isStart={isStart}
+                        isWall={isWall}
+                        mouseIsPressed={mouseIsPressed}
+                        onMouseDown={(row, col) =>
+                          this.handleMouseDown(row, col)
+                        }
+                        onMouseEnter={(row, col) =>
+                          this.handleMouseEnter(row, col)
+                        }
+                        onMouseUp={() => this.handleMouseUp()}
+                        row={row}
+                      ></Node>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
@@ -149,3 +177,10 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   newGrid[row][col] = newNode;
   return newGrid;
 };
+
+const mapStateToProps = (state) => {
+  return {
+    method: state.path.method,
+  };
+};
+export default connect(mapStateToProps)(PathfindingVisualizer);

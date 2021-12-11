@@ -2,6 +2,12 @@
   height: 25px;
 }
 
+.grid-wrapper {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
 .PathfindingVisualizer {
   width: 100%;
   display: flex;
