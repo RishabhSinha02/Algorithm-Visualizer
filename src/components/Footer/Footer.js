@@ -13,11 +13,11 @@ const Footer = () => {
   const contributors = {
     title: "Contributors",
     items: [
+      "Rishabh Sinha",
       "Arpan Bari",
       "Devang Mestry",
       "Sakshi Patil",
       "Omkar Joshi",
-      "Rishabh Sinha",
     ],
   };
 
